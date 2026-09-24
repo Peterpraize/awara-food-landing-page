@@ -146,6 +146,7 @@
 
 
                     <button
+                        type="button"
                         class="hero-order-button"
                         onclick="orderAwara(
                             'Awara with Chicken Sauce',
@@ -210,6 +211,7 @@
 
 
                     <button
+                        type="button"
                         class="hero-order-button"
                         onclick="orderAwara(
                             'Awara with Egg Sauce',
@@ -274,6 +276,7 @@
 
 
                     <button
+                        type="button"
                         class="hero-order-button"
                         onclick="orderAwara(
                             'Awara with Mackerel Fish Sauce',
@@ -294,6 +297,7 @@
             ================================================== -->
 
             <button
+                type="button"
                 class="carousel-arrow prev"
                 onclick="changeSlide(-1)"
                 aria-label="Previous slide"
@@ -308,6 +312,7 @@
             ================================================== -->
 
             <button
+                type="button"
                 class="carousel-arrow next"
                 onclick="changeSlide(1)"
                 aria-label="Next slide"
@@ -324,6 +329,7 @@
             <div class="carousel-dots">
 
                 <button
+                    type="button"
                     class="carousel-dot active"
                     onclick="goToSlide(0)"
                     aria-label="Chicken sauce"
@@ -331,6 +337,7 @@
 
 
                 <button
+                    type="button"
                     class="carousel-dot"
                     onclick="goToSlide(1)"
                     aria-label="Egg sauce"
@@ -338,6 +345,7 @@
 
 
                 <button
+                    type="button"
                     class="carousel-dot"
                     onclick="goToSlide(2)"
                     aria-label="Fish sauce"
@@ -429,11 +437,67 @@
                     </div>
 
 
+                    <!-- QUANTITY -->
+
+                    <div class="quantity-box">
+
+                        <span>
+                            Quantity
+                        </span>
+
+
+                        <div class="quantity-controls">
+
+                            <button
+                                type="button"
+                                class="quantity-btn"
+                                onclick="changeQuantity(this, -1)"
+                                aria-label="Decrease chicken quantity"
+                            >
+                                −
+                            </button>
+
+
+                            <span class="quantity-value">
+                                1
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="quantity-btn"
+                                onclick="changeQuantity(this, 1)"
+                                aria-label="Increase chicken quantity"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="total-price">
+
+                        Total:
+                        <strong>
+                            ₦3,500
+                        </strong>
+
+                    </div>
+
+
+                    <!-- ORDER -->
+
                     <button
+                        type="button"
                         class="order-button"
-                        onclick="orderAwara(
+                        onclick="orderProduct(
+                            this,
                             'Awara with Chicken Sauce',
-                            '₦3,500'
+                            3500
                         )"
                     >
                         Order on WhatsApp
@@ -481,11 +545,67 @@
                     </div>
 
 
+                    <!-- QUANTITY -->
+
+                    <div class="quantity-box">
+
+                        <span>
+                            Quantity
+                        </span>
+
+
+                        <div class="quantity-controls">
+
+                            <button
+                                type="button"
+                                class="quantity-btn"
+                                onclick="changeQuantity(this, -1)"
+                                aria-label="Decrease egg quantity"
+                            >
+                                −
+                            </button>
+
+
+                            <span class="quantity-value">
+                                1
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="quantity-btn"
+                                onclick="changeQuantity(this, 1)"
+                                aria-label="Increase egg quantity"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="total-price">
+
+                        Total:
+                        <strong>
+                            ₦1,500
+                        </strong>
+
+                    </div>
+
+
+                    <!-- ORDER -->
+
                     <button
+                        type="button"
                         class="order-button"
-                        onclick="orderAwara(
+                        onclick="orderProduct(
+                            this,
                             'Awara with Egg Sauce',
-                            '₦1,500'
+                            1500
                         )"
                     >
                         Order on WhatsApp
@@ -533,11 +653,67 @@
                     </div>
 
 
+                    <!-- QUANTITY -->
+
+                    <div class="quantity-box">
+
+                        <span>
+                            Quantity
+                        </span>
+
+
+                        <div class="quantity-controls">
+
+                            <button
+                                type="button"
+                                class="quantity-btn"
+                                onclick="changeQuantity(this, -1)"
+                                aria-label="Decrease fish quantity"
+                            >
+                                −
+                            </button>
+
+
+                            <span class="quantity-value">
+                                1
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="quantity-btn"
+                                onclick="changeQuantity(this, 1)"
+                                aria-label="Increase fish quantity"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="total-price">
+
+                        Total:
+                        <strong>
+                            ₦2,500
+                        </strong>
+
+                    </div>
+
+
+                    <!-- ORDER -->
+
                     <button
+                        type="button"
                         class="order-button"
-                        onclick="orderAwara(
+                        onclick="orderProduct(
+                            this,
                             'Awara with Mackerel Fish Sauce',
-                            '₦2,500'
+                            2500
                         )"
                     >
                         Order on WhatsApp

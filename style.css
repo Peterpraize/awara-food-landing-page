@@ -1089,3 +1089,98 @@ footer {
     }
 
 }
+/* ==============================
+   QUANTITY & TOTAL
+============================== */
+
+.quantity-box {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.quantity-box > span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quantity-btn {
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid var(--golden);
+    border-radius: 50%;
+
+    background: var(--cream);
+    color: var(--deep-green);
+
+    font-size: 21px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.2s ease;
+}
+
+.quantity-btn:hover {
+    background: var(--golden);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+.quantity-value {
+    min-width: 25px;
+    text-align: center;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    color: var(--text-dark);
+}
+
+.total-price {
+    margin: 6px 0 15px;
+
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+.total-price strong {
+    color: var(--forest-green);
+    font-size: 18px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .quantity-box {
+        margin-top: 15px;
+    }
+
+    .quantity-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .quantity-controls {
+        gap: 10px;
+    }
+}
