@@ -74,13 +74,11 @@
             <!-- HEADER ORDER BUTTON -->
 
             <a
-                href="https://wa.me/2347087057376?text=Hello%20AWARA%2C%20I%20would%20like%20to%20place%20an%20order."
-                class="header-order"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Order Now
-            </a>
+    href="#menu"
+    class="header-order"
+>
+    Order Now
+</a>
 
         </header>
 
@@ -146,15 +144,12 @@
 
 
                     <button
-                        type="button"
-                        class="hero-order-button"
-                        onclick="orderAwara(
-                            'Awara with Chicken Sauce',
-                            '₦3,500'
-                        )"
-                    >
-                        Order on WhatsApp
-                    </button>
+    type="button"
+    class="hero-order-button"
+    onclick="goToProduct('chicken')"
+>
+    Order on WhatsApp
+</button>
 
                 </div>
 
@@ -211,15 +206,12 @@
 
 
                     <button
-                        type="button"
-                        class="hero-order-button"
-                        onclick="orderAwara(
-                            'Awara with Egg Sauce',
-                            '₦1,500'
-                        )"
-                    >
-                        Order on WhatsApp
-                    </button>
+    type="button"
+    class="hero-order-button"
+    onclick="goToProduct('fish')"
+>
+    Order on WhatsApp
+</button>
 
                 </div>
 
@@ -275,16 +267,13 @@
                     </div>
 
 
-                    <button
-                        type="button"
-                        class="hero-order-button"
-                        onclick="orderAwara(
-                            'Awara with Mackerel Fish Sauce',
-                            '₦2,500'
-                        )"
-                    >
-                        Order on WhatsApp
-                    </button>
+                    <<button
+    type="button"
+    class="hero-order-button"
+    onclick="goToProduct('fish')"
+>
+    Order on WhatsApp
+</button>
 
                 </div>
 
@@ -403,7 +392,7 @@
                      CHICKEN
                 ================================================== -->
 
-                <article class="product-card featured">
+                <article class="product-card featured" id="product-chicken" >
 
 
                     <div class="product-image">
@@ -511,7 +500,7 @@
                      EGG
                 ================================================== -->
 
-                <article class="product-card">
+                <article class="product-card" id="product-egg">
 
 
                     <div class="product-image">
@@ -619,7 +608,7 @@
                      MACKEREL FISH
                 ================================================== -->
 
-                <article class="product-card">
+                <article class="product-card" id="product-fish">
 
 
                     <div class="product-image">
@@ -749,7 +738,7 @@
          JAVASCRIPT
     ====================================================== -->
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 
 
 </body>

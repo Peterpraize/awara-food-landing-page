@@ -1102,6 +1102,7 @@ footer {
     align-items: center;
     justify-content: space-between;
     gap: 15px;
+    padding-left: 10px;
 }
 
 .quantity-box > span {
@@ -1183,4 +1184,16 @@ footer {
     .quantity-controls {
         gap: 10px;
     }
+}
+
+/* Highlight product when coming from hero */
+
+.product-card {
+    scroll-margin-top: 30px;
+}
+
+.product-highlight {
+    transform: translateY(-6px);
+    box-shadow:
+        0 20px 50px rgba(65, 86, 43, 0.25);
 }

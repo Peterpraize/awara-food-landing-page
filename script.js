@@ -4,7 +4,7 @@
 
 
 /* =====================================================
-   WHATSAPP ORDER FROM HERO
+   HERO WHATSAPP ORDER
 ===================================================== */
 
 function orderAwara(product, price) {
@@ -17,8 +17,9 @@ function orderAwara(product, price) {
 I would like to place an order.
 
 🍽️ Product: ${product}
-💰 Price: ${price}
+💰 Unit Price: ${price}
 📦 Quantity: 1
+💵 Total: ${price}
 
 Please confirm availability and delivery/pickup details.
 
@@ -32,38 +33,29 @@ Thank you!`;
 
     window.open(
         whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
+        "_blank"
     );
 }
 
 
-
 /* =====================================================
-   CHANGE PRODUCT QUANTITY
+   CHANGE QUANTITY
 ===================================================== */
 
 function changeQuantity(button, change) {
 
-    // Find the product card containing the button
-    const card = button.closest(".product-card");
+    const card =
+        button.closest(".product-card");
 
-    if (!card) {
-        return;
-    }
+    if (!card) return;
 
 
-    // Find quantity number
     const quantityElement =
         card.querySelector(".quantity-value");
 
-
-    // Find total price
     const totalElement =
         card.querySelector(".total-price strong");
 
-
-    // Find original product price
     const priceElement =
         card.querySelector(".price");
 
@@ -77,67 +69,37 @@ function changeQuantity(button, change) {
     }
 
 
-    // Get current quantity
     let quantity =
-        parseInt(quantityElement.textContent);
+        parseInt(
+            quantityElement.textContent.trim()
+        );
 
 
-    // Get product price
     const price =
         parseInt(
             priceElement.textContent
                 .replace(/[₦,]/g, "")
+                .trim()
         );
 
 
-    // Change quantity
     quantity += change;
 
 
-    // Never allow quantity below 1
+    // Minimum quantity is 1
     if (quantity < 1) {
         quantity = 1;
     }
 
 
-    // Update quantity on screen
-    quantityElement.textContent = quantity;
+    // Update quantity displayed
+    quantityElement.textContent =
+        quantity;
 
 
-    // Calculate total
-    const total = price * quantity;
-
-
-    // Update total on screen
-    totalElement.textContent =
-        "₦" + total.toLocaleString("en-NG");
-}
-
-
-
-/* =====================================================
-   ORDER PRODUCT WITH QUANTITY
-===================================================== */
-
-function orderProduct(button, product, price) {
-
-    // Find the product card
-    const card =
-        button.closest(".product-card");
-
-
-    if (!card) {
-        return;
-    }
-
-
-    // Get selected quantity
-    const quantityElement =
-        card.querySelector(".quantity-value");
-
-
-    const quantity =
-        parseInt(quantityElement.textContent);
+    // SAVE THE CURRENT QUANTITY
+    card.dataset.quantity =
+        quantity;
 
 
     // Calculate total
@@ -145,12 +107,91 @@ function orderProduct(button, product, price) {
         price * quantity;
 
 
-    // WhatsApp number
+    // Update total displayed
+    totalElement.textContent =
+        "₦" + total.toLocaleString("en-NG");
+}
+
+
+
+/* =====================================================
+   PRODUCT ORDER
+===================================================== */
+
+function orderProduct(button, product, price) {
+
+    const card =
+        button.closest(".product-card");
+
+    if (!card) {
+        console.error("Product card not found.");
+        return;
+    }
+
+
+    /*
+       Get the quantity directly from
+       the quantity displayed on the card.
+    */
+
+    const quantityElement =
+        card.querySelector(".quantity-value");
+
+
+    if (!quantityElement) {
+
+        console.error(
+            "Quantity element not found."
+        );
+
+        return;
+    }
+
+
+    const quantity =
+        parseInt(
+            quantityElement.textContent.trim()
+        );
+
+
+    /*
+       Make sure quantity is valid.
+    */
+
+    if (
+        isNaN(quantity) ||
+        quantity < 1
+    ) {
+
+        console.error(
+            "Invalid quantity:",
+            quantity
+        );
+
+        return;
+    }
+
+
+    /*
+       Calculate total.
+    */
+
+    const total =
+        price * quantity;
+
+
+    /*
+       WhatsApp number.
+    */
+
     const phoneNumber =
         "2347087057376";
 
 
-    // Create WhatsApp message
+    /*
+       Create message.
+    */
+
     const message =
 `Hello AWARA 👋
 
@@ -166,7 +207,10 @@ Please confirm availability and delivery/pickup details.
 Thank you!`;
 
 
-    // Create WhatsApp URL
+    /*
+       Create WhatsApp URL.
+    */
+
     const whatsappURL =
         "https://wa.me/" +
         phoneNumber +
@@ -174,15 +218,77 @@ Thank you!`;
         encodeURIComponent(message);
 
 
-    // Open WhatsApp
+    /*
+       Open WhatsApp.
+    */
+
     window.open(
         whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
+        "_blank"
     );
 }
 
+/* =====================================================
+   GO FROM HERO TO PRODUCT
+===================================================== */
 
+function goToProduct(product) {
+
+    let productId = "";
+
+    if (product === "chicken") {
+        productId = "product-chicken";
+    }
+
+    if (product === "egg") {
+        productId = "product-egg";
+    }
+
+    if (product === "fish") {
+        productId = "product-fish";
+    }
+
+
+    const productCard =
+        document.getElementById(productId);
+
+
+    if (!productCard) {
+        console.error(
+            "AWARA product card not found:",
+            productId
+        );
+        return;
+    }
+
+
+    /*
+       Scroll to the selected product
+    */
+
+    productCard.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+
+    /*
+       Briefly highlight the product
+    */
+
+    productCard.classList.add(
+        "product-highlight"
+    );
+
+
+    setTimeout(function () {
+
+        productCard.classList.remove(
+            "product-highlight"
+        );
+
+    }, 1500);
+}
 
 /* =====================================================
    HERO CAROUSEL
@@ -193,10 +299,14 @@ document.addEventListener(
     function () {
 
         const slides =
-            document.querySelectorAll(".hero-slide");
+            document.querySelectorAll(
+                ".hero-slide"
+            );
 
         const dots =
-            document.querySelectorAll(".carousel-dot");
+            document.querySelectorAll(
+                ".carousel-dot"
+            );
 
         const previousButton =
             document.querySelector(
@@ -209,7 +319,6 @@ document.addEventListener(
             );
 
 
-        // Make sure carousel exists
         if (
             slides.length === 0 ||
             dots.length === 0
@@ -229,25 +338,26 @@ document.addEventListener(
 
 
 
-        /* =================================================
+        /* =============================================
            SHOW SLIDE
-        ================================================= */
+        ============================================= */
 
         function showSlide(index) {
 
-            // Loop back to first slide
-            if (index >= slides.length) {
+            if (
+                index >=
+                slides.length
+            ) {
                 index = 0;
             }
 
 
-            // Loop to last slide
             if (index < 0) {
-                index = slides.length - 1;
+                index =
+                    slides.length - 1;
             }
 
 
-            // Remove active from all slides
             slides.forEach(
                 function (slide) {
 
@@ -259,7 +369,6 @@ document.addEventListener(
             );
 
 
-            // Remove active from all dots
             dots.forEach(
                 function (dot) {
 
@@ -271,13 +380,11 @@ document.addEventListener(
             );
 
 
-            // Activate selected slide
             slides[index].classList.add(
                 "active"
             );
 
 
-            // Activate selected dot
             dots[index].classList.add(
                 "active"
             );
@@ -288,9 +395,9 @@ document.addEventListener(
 
 
 
-        /* =================================================
-           NEXT SLIDE
-        ================================================= */
+        /* =============================================
+           NEXT
+        ============================================= */
 
         function nextSlide() {
 
@@ -301,9 +408,9 @@ document.addEventListener(
 
 
 
-        /* =================================================
-           PREVIOUS SLIDE
-        ================================================= */
+        /* =============================================
+           PREVIOUS
+        ============================================= */
 
         function previousSlide() {
 
@@ -314,9 +421,9 @@ document.addEventListener(
 
 
 
-        /* =================================================
+        /* =============================================
            NEXT BUTTON
-        ================================================= */
+        ============================================= */
 
         if (nextButton) {
 
@@ -330,13 +437,14 @@ document.addEventListener(
 
                 }
             );
+
         }
 
 
 
-        /* =================================================
+        /* =============================================
            PREVIOUS BUTTON
-        ================================================= */
+        ============================================= */
 
         if (previousButton) {
 
@@ -350,13 +458,14 @@ document.addEventListener(
 
                 }
             );
+
         }
 
 
 
-        /* =================================================
-           CAROUSEL DOTS
-        ================================================= */
+        /* =============================================
+           DOTS
+        ============================================= */
 
         dots.forEach(
             function (dot, index) {
@@ -377,9 +486,9 @@ document.addEventListener(
 
 
 
-        /* =================================================
-           AUTOMATIC SLIDE
-        ================================================= */
+        /* =============================================
+           AUTO SLIDE
+        ============================================= */
 
         function startAutoSlide() {
 
@@ -396,29 +505,30 @@ document.addEventListener(
 
 
 
-        /* =================================================
-           RESTART AUTOMATIC SLIDE
-        ================================================= */
+        /* =============================================
+           RESTART AUTO SLIDE
+        ============================================= */
 
         function restartAutoSlide() {
 
-            clearInterval(autoSlide);
+            clearInterval(
+                autoSlide
+            );
 
             startAutoSlide();
         }
 
 
 
-        // Start carousel
         showSlide(0);
 
         startAutoSlide();
 
 
 
-        /* =================================================
-           PAUSE CAROUSEL ON HOVER
-        ================================================= */
+        /* =============================================
+           PAUSE ON HOVER
+        ============================================= */
 
         const carousel =
             document.querySelector(
@@ -432,7 +542,9 @@ document.addEventListener(
                 "mouseenter",
                 function () {
 
-                    clearInterval(autoSlide);
+                    clearInterval(
+                        autoSlide
+                    );
 
                 }
             );
@@ -451,9 +563,9 @@ document.addEventListener(
 
 
 
-        /* =================================================
+        /* =============================================
            MOBILE SWIPE
-        ================================================= */
+        ============================================= */
 
         let touchStartX = 0;
 
@@ -491,7 +603,6 @@ document.addEventListener(
                         touchStartX;
 
 
-                    // Swipe left
                     if (
                         swipeDistance < -50
                     ) {
@@ -503,7 +614,6 @@ document.addEventListener(
                     }
 
 
-                    // Swipe right
                     if (
                         swipeDistance > 50
                     ) {
