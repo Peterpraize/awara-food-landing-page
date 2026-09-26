@@ -17,9 +17,11 @@ function orderAwara(product, price) {
 I would like to place an order.
 
 🍽️ Product: ${product}
-💰 Unit Price: ${price}
-📦 Quantity: 1
-💵 Total: ${price}
+💰 Unit Price: ₦${price.toLocaleString("en-NG")}
+📦 Quantity: ${quantity}
+💵 Total: ₦${total.toLocaleString("en-NG")}
+
+📍 Location: Brighter Road, Minna, Niger State, Nigeria
 
 Please confirm availability and delivery/pickup details.
 

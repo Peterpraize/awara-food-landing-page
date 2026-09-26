@@ -842,6 +842,12 @@ footer {
 
     font-size: 14px;
 }
+.footer-address {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #BDB7A9;
+    opacity: 0.85;
+}
 
 
 /* =========================================================
